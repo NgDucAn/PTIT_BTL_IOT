@@ -9,7 +9,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     override fun initMain() {
-        TODO("Not yet implemented")
-    }
 
+    }
 }

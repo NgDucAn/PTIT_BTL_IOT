@@ -5,10 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:layout_marginHorizontal="@dimen/_12sdp"
     android:layout_marginVertical="@dimen/_16sdp"
-    tools:context=".ui.activity.LoginActivity">
+    android:layout_marginHorizontal="@dimen/_12sdp"
+    tools:context=".ui.activity.RegisterActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ll_navbar"
@@ -19,23 +18,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_back" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
-            android:text="@string/login"
+            android:text="@string/register"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/ll_user_name"
+        android:id="@+id/ll_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_40sdp"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/_40sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_navbar">
@@ -43,24 +49,49 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_name"
+            android:text="@string/name"
             android:fontFamily="@font/roboto_regular"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_14sdp"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_14sdp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_name">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_name"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="@dimen/_14sdp"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="@dimen/_14sdp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ll_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_12sdp"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_user_name">
@@ -68,16 +99,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
             android:text="@string/password"
-            android:textSize="@dimen/_14sdp" />
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="@dimen/_14sdp"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_14sdp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -85,17 +116,16 @@
         android:layout_width="@dimen/_120sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_32sdp"
-        android:background="@drawable/shape_button"
-        android:fontFamily="@font/roboto_regular"
-        android:text="@string/login"
+        android:text="@string/register"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/shape_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_password" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_password"/>
 
     <TextView
-        android:id="@+id/tv_register_now"
+        android:id="@+id/tv_login_now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_16sdp"

@@ -8,30 +8,26 @@
     tools:context=".ui.activity.MainActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_plant"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:src="@drawable/ic_watering_plants"
-        app:layout_constraintHeight_percent="0.2"
-        android:layout_marginTop="@dimen/_32sdp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_background" />
+
+    <ProgressBar
+        android:id="@+id/pb_loader"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/color_process_bar"
+        android:indeterminateTintMode="src_atop"
+        android:max="100"
+        android:progress="40"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_40sdp"
-        app:layout_constraintTop_toBottomOf="@id/iv_plant"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:text="Login"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bt_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/bt_login"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:text="Register"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 </androidx.constraintlayout.widget.ConstraintLayout>

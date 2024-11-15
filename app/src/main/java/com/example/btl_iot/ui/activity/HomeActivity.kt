@@ -1,5 +1,6 @@
 package com.example.btl_iot.ui.activity
 
+import android.content.Intent
 import com.example.btl_iot.base.BaseActivity
 import com.example.btl_iot.databinding.ActivityHomeBinding
 
@@ -9,6 +10,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
     override fun initMain() {
+        initEvent()
+    }
 
+    private fun initEvent() {
+        with(binding) {
+            icSetting.setOnClickListener {
+                startActivity(Intent(this@HomeActivity, SettingActivity::class.java))
+            }
+        }
     }
 }

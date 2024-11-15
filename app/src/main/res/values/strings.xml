@@ -8,4 +8,13 @@
     <string name="dont_have_account">Don\'t have account? Register Now</string>"
     <string name="already_have_an_account">Already have an account? Login</string>
     <string name="plant_watering_system">Plant Watering System</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
+    <string name="soil_moisture">Soil-Moisture</string>
+    <string name="setting">Setting</string>
+    <string name="user_information">User Information</string>
+    <string name="change_password">Change Password</string>
+    <string name="pump_control_times">Pump Control Times</string>
+    <string name="watering">Watering</string>
+    <string name="predict_mode">Predict Mode</string>
 </resources>

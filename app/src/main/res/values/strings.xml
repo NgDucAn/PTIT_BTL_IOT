@@ -10,7 +10,7 @@
     <string name="plant_watering_system">Plant Watering System</string>
     <string name="temperature">Temperature</string>
     <string name="humidity">Humidity</string>
-    <string name="soil_moisture">Soil-Moisture</string>
+    <string name="soil_moisture">Soil\nMoisture</string>
     <string name="setting">Setting</string>
     <string name="user_information">User Information</string>
     <string name="change_password">Change Password</string>

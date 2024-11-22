@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingVertical="@dimen/_16sdp"
     android:paddingHorizontal="@dimen/_12sdp"
+    android:paddingVertical="@dimen/_16sdp"
     tools:context=".ui.activity.HomeActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -21,10 +21,10 @@
 
         <TextView
             style="@style/TextStyleNavbar"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="start"
             android:layout_weight="1"
+            android:gravity="start"
             android:text="@string/plant_watering_system"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
@@ -34,160 +34,268 @@
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_setting"/>
+            android:src="@drawable/ic_setting" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_temperature"
+    <!-- Main content -->
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:paddingVertical="@dimen/_12sdp"
-        android:background="@drawable/shape_bg_temperature"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_navbar">
 
-        <TextView
-            android:id="@+id/tv_temperature"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/temperature"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_value_temperature"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="30*C"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_36sdp"
-            android:fontFamily="@font/roboto_regular"
-            app:layout_constraintTop_toBottomOf="@id/tv_temperature"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/_16sdp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_humidity"
-        android:layout_width="match_parent"
+            <!-- Weather Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/weather_card"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_16sdp"
+                app:cardBackgroundColor="#4FC3F7"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/ic_weather"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:contentDescription="Weather Icon"
+                        android:src="@drawable/ic_sun" />
+
+                    <!-- Temperature -->
+                    <TextView
+                        android:id="@+id/tv_temperature_text"
+                        style="@style/TextStyleNavbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32°"
+                        android:textColor="#FFFFFF"
+                        android:textSize="48sp"
+                        android:textStyle="bold" />
+
+                    <!-- Weather Status -->
+                    <TextView
+                        android:id="@+id/tv_weather_status"
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sunny"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Temperature, Humidity, Soil Moisture Cards in one row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cl_temperature"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:paddingVertical="@dimen/_12sdp"
+                    app:cardBackgroundColor="#FFA726"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_temperature"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/temperature"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_16sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_value_temperature"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="30*C"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_36sdp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Humidity Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cl_humidity"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginHorizontal="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:paddingVertical="@dimen/_12sdp"
+                    app:cardBackgroundColor="#66BB6A"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_humidity"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/humidity"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_16sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_value_humidity"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="66%"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_36sdp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Soil Moisture Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cl_soil_moisture"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:paddingVertical="@dimen/_12sdp"
+                    app:cardBackgroundColor="#42A5F5"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_soil_moisture"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:gravity="center"
+                            android:text="@string/soil_moisture"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_16sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_value_soil_moisture"
+                            style="@style/TextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="66%"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_36sdp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_12sdp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/sw_watering"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        app:thumbTint="#A4A4A8"
+                        app:track="@drawable/switch_track"
+                        app:trackTint="@color/switch_track" />
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/watering"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/sw_predict_mode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        app:thumbTint="#A4A4A8"
+                        app:track="@drawable/switch_track"
+                        app:trackTint="@color/switch_track" />
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/predict_mode"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/pb_loader"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:paddingVertical="@dimen/_12sdp"
-        android:background="@drawable/shape_bg_humidity"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_temperature">
-
-        <TextView
-            android:id="@+id/tv_humidity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/humidity"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_value_humidity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="66%"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_36sdp"
-            android:fontFamily="@font/roboto_regular"
-            app:layout_constraintTop_toBottomOf="@id/tv_humidity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_soil_moisture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:paddingVertical="@dimen/_12sdp"
-        android:background="@drawable/shape_bg_soil_moisture"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_humidity">
-
-        <TextView
-            android:id="@+id/tv_soil_moisture"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/soil_moisture"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/tv_value_soil_moisture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="66%"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_36sdp"
-            android:fontFamily="@font/roboto_regular"
-            app:layout_constraintTop_toBottomOf="@id/tv_soil_moisture"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/sw_watering"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        app:thumbTint="#A4A4A8"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginStart="@dimen/_12sdp"
-        app:track="@drawable/switch_track"
-        app:trackTint="@color/switch_track"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_soil_moisture"/>
-
-    <TextView
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/watering"
-        android:textSize="@dimen/_12sdp"
-        app:layout_constraintStart_toStartOf="@id/sw_watering"
-        app:layout_constraintTop_toBottomOf="@id/sw_watering"/>
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/sw_predict_mode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        app:thumbTint="#A4A4A8"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        app:track="@drawable/switch_track"
-        app:trackTint="@color/switch_track"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_soil_moisture"/>
-
-    <TextView
-        style="@style/TextStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/predict_mode"
-        android:textSize="@dimen/_12sdp"
-        app:layout_constraintEnd_toEndOf="@id/sw_predict_mode"
-        app:layout_constraintTop_toBottomOf="@id/sw_predict_mode"/>
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

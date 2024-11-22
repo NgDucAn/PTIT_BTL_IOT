@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="@color/white"
+    android:divider="@android:color/darker_gray"
+    android:showDividers="middle">
+
+    <!-- Name Column -->
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Name"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center" />
+
+    <!-- Last Turned On Column -->
+    <TextView
+        android:id="@+id/tv_last_turned_on"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Last Turned On"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center" />
+
+    <!-- Last Turned Off Column -->
+    <TextView
+        android:id="@+id/tv_last_turned_off"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Last Turned Off"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center" />
+</LinearLayout>

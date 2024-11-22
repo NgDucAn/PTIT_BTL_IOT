@@ -1,5 +1,6 @@
 package com.example.btl_iot.ui.activity
 
+import android.content.Intent
 import com.example.btl_iot.base.BaseActivity
 import com.example.btl_iot.databinding.ActivitySettingBinding
 
@@ -18,6 +19,10 @@ class SettingActivity : BaseActivity<ActivitySettingBinding>() {
                 finish()
             }
 
+            clPump.setOnClickListener {
+                val intent = Intent(this@SettingActivity, PumpControlTimes::class.java)
+                startActivity(intent)
+            }
         }
     }
 }

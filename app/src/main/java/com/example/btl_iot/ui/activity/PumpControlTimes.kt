@@ -16,9 +16,9 @@ class PumpControlTimes : BaseActivity<ActivityPumpControlTimesBinding>() {
 
     private fun initView() {
         val sampleData = listOf(
-            TableAdapter.RowData("Pump 1", "08:00 AM", "10:00 AM"),
-            TableAdapter.RowData("Pump 2", "09:30 AM", "11:00 AM"),
-            TableAdapter.RowData("Pump 3", "07:45 AM", "09:15 AM")
+            TableAdapter.RowData("1", "08:00 AM", "10:00 AM"),
+            TableAdapter.RowData("2", "09:30 AM", "11:00 AM"),
+            TableAdapter.RowData("3", "07:45 AM", "09:15 AM")
         )
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)

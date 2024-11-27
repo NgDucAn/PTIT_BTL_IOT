@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Name"
+        android:textColor="@color/black"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="center" />
 
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Last Turned On"
+        android:textColor="@color/black"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="center" />
 
@@ -35,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Last Turned Off"
+        android:textColor="@color/black"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:gravity="center" />
 </LinearLayout>

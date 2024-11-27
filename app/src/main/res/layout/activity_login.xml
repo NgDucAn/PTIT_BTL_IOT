@@ -47,7 +47,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             style="@style/TextStyle"
-            android:id="@+id/et_name"
+            android:id="@+id/et_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/_14sdp" />
@@ -75,8 +75,24 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_14sdp" />
+            android:textSize="@dimen/_14sdp"
+            android:inputType="textPassword"
+            android:drawableEnd="@drawable/ic_eye_closed"
+            android:drawableTint="#E5E3D4"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/tv_error"
+        style="@style/TextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:textColor="#FF2929"
+        android:textSize="@dimen/_14sdp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_password" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/bt_login"
@@ -90,7 +106,7 @@
         android:textSize="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_password" />
+        app:layout_constraintTop_toBottomOf="@id/tv_error" />
 
     <TextView
         style="@style/TextStyle"

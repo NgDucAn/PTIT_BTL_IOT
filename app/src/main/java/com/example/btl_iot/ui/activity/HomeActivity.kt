@@ -9,20 +9,12 @@ import com.example.btl_iot.api.Api
 import com.example.btl_iot.base.BaseActivity
 import com.example.btl_iot.databinding.ActivityHomeBinding
 import com.example.btl_iot.model.GetWeatherResponse
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.withContext
 
 
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
-    private var temperature: Double = 0.0
-    private var humidity: Double = 0.0
-    private var precipitation: Boolean = false
-
     override fun createBinding(): ActivityHomeBinding {
         return ActivityHomeBinding.inflate(layoutInflater)
     }
@@ -37,48 +29,67 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
             icSetting.setOnClickListener {
                 startActivity(Intent(this@HomeActivity, SettingActivity::class.java))
             }
+            swWatering.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    Toast.makeText(this@HomeActivity, "The pump is on.", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@HomeActivity, "The pump is off.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
     private fun getWeather() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val getWeatherApi: Call<GetWeatherResponse> =
-                Api.getApi().getWeather(temperature, humidity, precipitation)
-            getWeatherApi.enqueue(object : Callback<GetWeatherResponse> {
-                override fun onResponse(
-                    call: Call<GetWeatherResponse>,
-                    response: Response<GetWeatherResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        val getWeatherResponse: GetWeatherResponse? = response.body()
-                        if (getWeatherResponse?.status == true) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                // Gửi request với tham số city
+                val response = Api.getApi().getWeather(city = "Hanoi")
+
+                if (response.isSuccessful) {
+                    val getWeatherResponse = response.body()
+                    if (getWeatherResponse != null) {
+                        withContext(Dispatchers.Main) {
                             initData(getWeatherResponse)
-                        } else {
-                            Log.d("Weather null", "Weather data is null or status is false")
                         }
                     } else {
-                        Log.e("Weather API Error", "Response Code: ${response.code()}")
+                        Log.e("Weather Error", "Response body is null")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("Weather API Error", "Response Code: ${response.code()}, Error: $errorBody")
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            this@HomeActivity,
+                            "Failed to fetch weather: $errorBody",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
-
-                override fun onFailure(call: Call<GetWeatherResponse>, t: Throwable) {
-                    Toast.makeText(this@HomeActivity, "API Failure: ${t.localizedMessage}", Toast.LENGTH_LONG).show()
-                    Log.e("API Failure", t.stackTraceToString())
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@HomeActivity,
+                        "API Failure: ${e.localizedMessage}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-            })
+                Log.e("API Failure", e.stackTraceToString())
+            }
         }
     }
 
     private fun initData(getWeatherResponse: GetWeatherResponse) {
         with(binding) {
-            Log.d("Data Weather", getWeatherResponse.data.toString())
-            if (getWeatherResponse.data?.precipitation == true) {
+            Log.d("Weather Data", getWeatherResponse.toString())
+            if (getWeatherResponse.humidity!! >= 70) {
                 icWeather.setImageResource(R.drawable.ic_rain)
             } else {
                 icWeather.setImageResource(R.drawable.ic_sun)
             }
-            tvTemperatureText.text = getWeatherResponse.data?.temperature.toString()
-            tvWeatherStatus.text = getWeatherResponse.data?.humidity.toString()
+            tvTemperatureText.text = "${getWeatherResponse.temperature}°C"
+            tvValueTemperature.text = "${getWeatherResponse.temperature}"
+            tvWeatherStatus.text = "${getWeatherResponse.humidity}%"
+            tvValueHumidity.text = "${getWeatherResponse.humidity}%"
         }
     }
 }
